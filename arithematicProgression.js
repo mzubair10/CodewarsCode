@@ -11,16 +11,16 @@ var findMissing = function (list) {
             keyValuePair[diff] = [i, i+1];
         }        
     });
-    let maxKey = 0;
+    let key = 0;
     if(isNegative){
-        maxKey = Math.min(...R.keys(keyValuePair));
+        key = Math.min(...R.keys(keyValuePair));
     }else{
-        maxKey = Math.max(...R.keys(keyValuePair));
+        key = Math.max(...R.keys(keyValuePair));
     }
-    const notEqualToMaxKey = x => x != maxKey;
-    const takeNormalDifferenceKey = R.filter(notEqualToMaxKey);
+    const notEqualToKey = x => x != key;
+    const takeNormalDifferenceKey = R.filter(notEqualToKey);
     const normalDifference = R.join('', takeNormalDifferenceKey(R.keys(keyValuePair)));
-    const lowerKeyValue = R.join('', R.take(1, keyValuePair[maxKey]));
+    const lowerKeyValue = R.join('', R.take(1, keyValuePair[key]));
     const missingValue = R.add(list[lowerKeyValue], normalDifference);
     return missingValue;
 }
